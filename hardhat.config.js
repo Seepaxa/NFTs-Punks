@@ -1,12 +1,18 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
-/** @type import('hardhat/config').HardhatUserConfig */
+const projectId = process.env.INFURE_PROJECT_ID;
+const privateKey = process.env.DEPLOYER_SIGNER_PRIVATE_KEY;
+
+ /*@type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: "0.8.17",
-  networks: {
-    Goerli:  {
-      url: "https://goerli.infura.io/v3/1ee6c355e92f47f8b0248e5994961f53",
-      accounts: []
+  networks: { 
+    goerli:  {
+      url: 'https://goerli.infura.io/v3/${projectId}',
+      accounts: [
+        privateKey
+      ],
     }
   }
 
